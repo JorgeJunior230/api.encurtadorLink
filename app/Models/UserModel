@@ -1,0 +1,30 @@
+<?php
+
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Model;
+
+class UserModel extends Model
+{
+    public static function boot()
+    {
+        parent::boot();
+
+        self::saving(function($model){
+            if(empty($model->user_id)){
+                $model->setUser();
+            }
+        });
+
+    }
+
+    public function setUser()
+    {
+        $user = auth()->user();
+
+        if($user){
+            $this->user_id = $user->id;
+        }
+    }
+}
