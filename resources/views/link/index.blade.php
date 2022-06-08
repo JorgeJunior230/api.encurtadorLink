@@ -1,5 +1,5 @@
-<x-layout title="Séries">
-    <a href="{{ route('series.create') }}" class="btn btn-dark mb-2">Adicionar</a>
+<x-layout title="Lista de Links">
+    <a href="{{ route('link.create') }}" class="btn btn-dark mb-2">Adicionar</a>
 
     @isset($mensagemSucesso)
     <div class="alert alert-success">
@@ -8,18 +8,18 @@
     @endisset
 
     <ul class="list-group">
-        @foreach ($series as $serie)
+        @foreach ($links as $link)
         <li class="list-group-item d-flex justify-content-between align-items-center">
-            <a href="{{ route('seasons.index', $serie->id) }}">
-                {{ $serie->nome }} 
+            <a href="{{ route('link.index', $serie->id) }}">
+                {{ $link->url }} 
             </a>
 
             <span class="d-flex">
-                <a href="{{ route('series.edit', $serie->id) }}" class="btn btn-primary btn-sm">
+                <a href="{{ route('link.edit', $link->id) }}" class="btn btn-primary btn-sm">
                     E
                 </a>
 
-                <form action="{{ route('series.destroy', $serie->id) }}" method="post" class="ms-2">
+                <form action="{{ route('link.destroy', $serie->id) }}" method="post" class="ms-2">
                     @csrf
                     @method('DELETE')
                     <button class="btn btn-danger btn-sm">

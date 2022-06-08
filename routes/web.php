@@ -15,12 +15,12 @@ use App\Http\Controllers\LinkController;
 */
 
 Route::get('/', function () {
-    return redirect('/links');
+    return redirect('/link');
 });
 
-Route::get('/links', [LinkController::class, 'index'])->name('series.index');;
-Route::get('/links/criar', [LinkController::class, 'create'])->name('series.create');
-Route::post('/links/salvar', [LinkController::class, 'store'])->name('series.store');
+Route::get('/link', [LinkController::class, 'index'])->name('link.index');;
+Route::get('/link/criar', [LinkController::class, 'create'])->name('link.create');
+Route::post('/link/salvar', [LinkController::class, 'store'])->name('link.store');
 
 //Route::resource('/series', SeriesController::class)->except(['show']);
 

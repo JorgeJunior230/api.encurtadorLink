@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Link;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Requests\LinkFormRequest;
@@ -10,33 +11,26 @@ class LinkController extends Controller
 {
     public function index(Request $request)
     {
-        //$series = Serie::query()->orderBy('nome')->get();
+        $links = Link::query()->orderBy('url')->get();
         //$mensagemSucesso = session('mensagem.sucesso');
 
-        //return view('series.index')->with('series', $series)->with('mensagemSucesso', $mensagemSucesso);
+        return view('link.index')->with('links', $links);
     }
 
     public function create()
     {
-        //return view('series.create');
+        return view('link.create');
     }
 
     public function store(SeriesFormRequest $request)
     {
-        //** Criando Array de validaçao dos campos */
-        //$request->validate([
-        //    'nome' =>['required', 'min:3']
-        //]);
-
         //**Testa para saber se esta recebendo os dados certos do form */
         //dd($request->all());
 
 
-        //** o metodo DB::transaction cuida para que toda transaçao que esteja dentro dela seja executada. Caso alguma falhe ela aborta tudo */
-
-        //$serie  = DB::transaction(function() use ($request) {
-        //            $serie = Serie::create($request->all());
-        //            $seasons = [];
+        $link  = DB::transaction(function() use ($request) {
+                    $serie = Serie::create($request->all());
+                    $seasons = [];
         //    
         //            //Inseri na tabela de Season
         //            for ($i = 1; $i <= $request->seasonsQty; $i++) {
@@ -59,8 +53,8 @@ class LinkController extends Controller
         //            }
         //            Episode::insert($episodes);    
         //            
-        //            return $serie;
-        //        });
+                    return $link;
+                });
 
 
 

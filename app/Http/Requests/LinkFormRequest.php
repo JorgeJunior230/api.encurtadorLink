@@ -24,7 +24,7 @@ class LinkFormRequest extends FormRequest
     public function rules()
     {
         return [
-            'nome' =>['required', 'min:3'],
+            'nome' =>['required'],
         ];
     }
 }
