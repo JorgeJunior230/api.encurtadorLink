@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use App\Http\Requests\LinkFormRequest;
 
 class LinkController extends Controller
 {
@@ -31,7 +33,7 @@ class LinkController extends Controller
 
 
         //** o metodo DB::transaction cuida para que toda transaçao que esteja dentro dela seja executada. Caso alguma falhe ela aborta tudo */
-        
+
         //$serie  = DB::transaction(function() use ($request) {
         //            $serie = Serie::create($request->all());
         //            $seasons = [];
