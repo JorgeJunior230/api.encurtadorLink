@@ -18,6 +18,7 @@ return new class extends Migration
             $table->Integer('user_id');
             $table->string('url');
             $table->string('slug')->nullable();
+            $table->Integer('contador');
             $table->timestamps();
         });
     }
