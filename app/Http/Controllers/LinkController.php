@@ -12,9 +12,10 @@ class LinkController extends Controller
     public function index(Request $request)
     {
         $links = Link::query()->orderBy('url')->get();
-        //$mensagemSucesso = session('mensagem.sucesso');
+        $mensagemSucesso = session('mensagem.sucesso');
 
-        return view('link.index')->with('links', $links);
+        //return view('link.index')->with('links', $links);
+        return view('link.index')->with('links', $links)->with('mensagemSucesso', $mensagemSucesso);
     }
 
     public function create()
@@ -43,34 +44,25 @@ class LinkController extends Controller
         });
 
 
-        return to_route('link.index');
-        //return to_route('series.index')->with('mensagem.sucesso', "O Link Reduzido para a URL '{$link->url}' foi adicionada com sucesso");
+        //return to_route('link.index');
+        return to_route('link.index')->with('mensagem.sucesso', "O Link Reduzido para a URL '{$link->url}' foi adicionada com sucesso");
     }
 
-    public function destroy(Serie $series)
+    public function destroy(Link $link)
     {
-        //$series->delete();
+        $link->delete();
 
-        //return to_route('series.index')->with('mensagem.sucesso', "Série '{$series->nome}' removida com sucesso");
+        return to_route('link.index')->with('mensagem.sucesso', "O Link Reduzido para a UR '{$link->url}' foi removida com sucesso");
     }
 
-    public function edit(Serie $series)
+    public function edit(Link $link)
     {
-        //return view('series.edit')->with('serie', $series);
+        
     }
 
     public function update(Serie $series, SeriesFormRequest $request)
     {
 
-        //*** Passa o parametro nome do formulario */
-        //$series->nome($request->nome);
-
-        //*** Pega todos os parametros do formulario */
-
-        //$series->fill($request->all());
-        //$series->save();
-
-        //return to_route('series.index')->with('mensagem.sucesso', "Série '{$series->nome}' atualizada com sucesso");
     }
 
 
