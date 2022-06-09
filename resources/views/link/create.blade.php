@@ -1,7 +1,6 @@
 <x-layout title="Inserir Novo Link">
     <form action="{{ route('link.store') }}" method="post">
         @csrf
-
         <div class="row mb-3">
             <div class="col-4">
                 <label for="url" class="form-label">Link:</label>

@@ -4,14 +4,25 @@
     @if($update)
     @method('PUT')
     @endif
-    <div class="mb-3">
-        <label for="nome" class="form-label">Nome:</label>
-        <input type="text"
-               id="nome"
-               name="nome"
-               class="form-control"
-               @isset($nome)value="{{ $nome }}"@endisset>
+    <div class="row mb-3">
+        <div class="col-4">
+            <label for="url" class="form-label">Link:</label>
+            <input type="text"
+                id="url"
+                name="url"
+                class="form-control"
+                @isset($nome)value="{{ $url }}"@endisset>
+        </div>
+
+        <div class="col-4">
+            <label for="slug" class="form-label">Link Reduzido:</label>
+            <input type="text"
+                id="slug"
+                name="slug"
+                class="form-control"
+                @isset($nome)value="{{ $slug }}"@endisset>
+        </div>
     </div>
 
-    <button type="submit" class="btn btn-primary">Adicionar</button>
+    <button type="submit" class="btn btn-primary">Salvar</button>
 </form>

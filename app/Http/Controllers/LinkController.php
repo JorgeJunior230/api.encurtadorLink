@@ -56,22 +56,21 @@ class LinkController extends Controller
             return $link;
         });
 
-
-        //return to_route('link.index');
         return to_route('link.index')->with('mensagem.sucesso', "O Link Reduzido para a URL '{$link->url}' foi adicionada com sucesso");
     }
 
-    public function destroy(Link $link)
+    public function destroy(Request $request)
     {
-        $link->delete();
+        Link::destroy($request->id);
+        return to_route('link.index')->with('mensagem.sucesso', "O Link Reduzido foi removido com sucesso");
 
-        return to_route('link.index')->with('mensagem.sucesso', "O Link Reduzido para a UR '{$link->url}' foi removida com sucesso");
     }
 
-    //public function edit(Request $request)
-    //{
-    //    return to_route('link.index');
-    //}
+    public function edit(Link $link)
+    {
+        //dd($link);
+        return view('link.edit')->with('link', $link);
+    }
 
     public function update(Request $request, $id, $click)
     { 
@@ -88,6 +87,17 @@ class LinkController extends Controller
         $URL = 'http://'.$links->url;        
         
         return redirect($URL);
+    }
+
+    public function updateData(Request $request)
+    { 
+        //Valida o campo
+        $request->validate([
+            'url' =>['required'],
+            'slug' =>['max:8']
+        ]);
+
+        return to_route('link.index');
     }
 
 

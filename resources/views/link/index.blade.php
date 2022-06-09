@@ -19,9 +19,12 @@
 
             <span class="d-flex">
 
+                <a href="{{ route('link.edit', $link->id) }}" class="btn btn-primary btn-sm">
+                    E
+                </a>
+
                 <form action="{{ route('link.destroy', $link->id) }}" method="post" class="ms-2">
                     @csrf
-                    @method('DELETE')
                     <button class="btn btn-danger btn-sm">
                         X
                     </button>
