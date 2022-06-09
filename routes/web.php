@@ -20,8 +20,6 @@ Route::get('/', function () {
 
 //Route::get('/link', [LinkController::class, 'index'])->name('link.index');;
 //Route::get('/link/criar', [LinkController::class, 'create'])->name('link.create');
-//Route::post('/link/salvar', [LinkController::class, 'store'])->name('link.store');
+Route::post('/link/contClick', [LinkController::class, 'contClick'])->name('link.contClick');
 
 Route::resource('/link', LinkController::class)->except(['show','edit','update']);
-
-//Route::get('/series/{series}/seasons',[SeasonsController::class, 'index'])->name('seasons.index');

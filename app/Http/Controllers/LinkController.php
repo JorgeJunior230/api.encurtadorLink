@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Link;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use App\Http\Requests\LinkFormRequest;
+use Hashids\Hashids;
 
 class LinkController extends Controller
 {
@@ -27,6 +27,12 @@ class LinkController extends Controller
     {
         //**Testa para saber se esta recebendo os dados certos do form */
         //dd($request->all());
+
+        //Valida o campo
+        $request->validate([
+            'url' =>['required'],
+            'slug' =>['min:6']
+        ]);
 
 
         $link  = DB::transaction(function() use ($request) {
@@ -63,6 +69,17 @@ class LinkController extends Controller
     public function update(Serie $series, SeriesFormRequest $request)
     {
 
+    }
+
+    public function contClick(Link $link)
+    {
+
+        $link->clicks = $link->clicks + 1;
+        $link->save();
+
+        //return to_route('link.index');
+
+        return redirect($link->url);
     }
 
 

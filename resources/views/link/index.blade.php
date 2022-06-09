@@ -10,8 +10,11 @@
     <ul class="list-group">
         @foreach ($links as $link)
         <li class="list-group-item d-flex justify-content-between align-items-center">
-            <a href="{{ route('link.index', $link->id) }}">
-                {{ $link->url }} 
+            
+            {{ $link->url }} 
+            
+            <a href="{{ route('link.contClick', $link->id) }}" class="float-left">
+                {{ $link->slug }} 
             </a>
 
             <span class="d-flex">

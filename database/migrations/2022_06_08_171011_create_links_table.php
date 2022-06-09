@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->string('url');
             $table->string('slug')->nullable();
-            $table->Integer('contador');
+            $table->bigInteger('clicks');
             $table->timestamps();
         });
     }
