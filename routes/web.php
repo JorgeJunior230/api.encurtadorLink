@@ -20,5 +20,6 @@ Route::get('/', function () {
 
 Route::get('/link', [LinkController::class, 'index'])->name('link.index');;
 Route::get('/link/create', [LinkController::class, 'create'])->name('link.create');
+Route::post('/series/store', [LinkController::class, 'store'])->name('link.store');
 Route::get('/link/destroy', [LinkController::class, 'destroy'])->name('link.destroy');
 Route::get('/link/update/{id}/{click?}', [LinkController::class, 'update'])->name('link.update');
