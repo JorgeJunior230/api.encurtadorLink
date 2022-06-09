@@ -4,22 +4,22 @@
 
         <div class="row mb-3">
             <div class="col-4">
-                <label for="nome" class="form-label">Link:</label>
+                <label for="url" class="form-label">Link:</label>
                 <input type="text"
                        autofocus
-                       id="nome"
-                       name="nome"
+                       id="url"
+                       name="url"
                        class="form-control"
-                       value="{{ old('nome') }}">
+                       value="{{ old('url') }}">
             </div>
 
             <div class="col-4">
-                <label for="seasonsQty" class="form-label">Link Reduzido:</label>
+                <label for="slug" class="form-label">Link Reduzido:</label>
                 <input type="text"
-                       id="seasonsQty"
-                       name="seasonsQty"
+                       id="slug"
+                       name="slug"
                        class="form-control"
-                       value="{{ old('seasonsQty') }}">
+                       value="{{ old('slug') }}">
             </div>
         </div>
 

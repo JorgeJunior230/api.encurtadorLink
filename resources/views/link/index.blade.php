@@ -10,7 +10,7 @@
     <ul class="list-group">
         @foreach ($links as $link)
         <li class="list-group-item d-flex justify-content-between align-items-center">
-            <a href="{{ route('link.index', $serie->id) }}">
+            <a href="{{ route('link.index', $link->id) }}">
                 {{ $link->url }} 
             </a>
 
@@ -19,7 +19,7 @@
                     E
                 </a>
 
-                <form action="{{ route('link.destroy', $serie->id) }}" method="post" class="ms-2">
+                <form action="{{ route('link.destroy', $link->id) }}" method="post" class="ms-2">
                     @csrf
                     @method('DELETE')
                     <button class="btn btn-danger btn-sm">

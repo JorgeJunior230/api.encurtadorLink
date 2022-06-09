@@ -22,43 +22,29 @@ class LinkController extends Controller
         return view('link.create');
     }
 
-    public function store(SeriesFormRequest $request)
+    public function store(Request $request)
     {
         //**Testa para saber se esta recebendo os dados certos do form */
         //dd($request->all());
 
 
         $link  = DB::transaction(function() use ($request) {
-                    $serie = Serie::create($request->all());
-                    $seasons = [];
-        //    
-        //            //Inseri na tabela de Season
-        //            for ($i = 1; $i <= $request->seasonsQty; $i++) {
-        //                $seasons[] = [
-        //                   'series_id' => $serie->id,
-        //                    'number' => $i,
-        //                ];
-        //            }
-        //            Season::insert($seasons);
-        //    
-        //            //Inseri na tabela de Episode
-        //            $episodes = [];
-        //            foreach ($serie->seasons as $season) {
-        //                for ($j = 1; $j <= $request->episodesPerSeason; $j++) {
-        //                    $episodes[] = [
-        //                        'season_id' => $season->id,
-        //                        'number' => $j
-        //                    ];
-        //                }
-        //            }
-        //            Episode::insert($episodes);    
-        //            
-                    return $link;
-                });
+
+            $urlDesc = $request->input('url');
+            $slugDesc = $request->input('slug');
+
+            $link = new Link();
+            $link->url = $urlDesc;
+            $link->slug = $slugDesc;
+
+            $link->save();
+
+            return $link;
+        });
 
 
-
-        //return to_route('series.index')->with('mensagem.sucesso', "Série '{$serie->nome}' adicionada com sucesso");
+        return to_route('link.index');
+        //return to_route('series.index')->with('mensagem.sucesso', "O Link Reduzido para a URL '{$link->url}' foi adicionada com sucesso");
     }
 
     public function destroy(Serie $series)
