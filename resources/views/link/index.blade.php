@@ -11,9 +11,9 @@
         @foreach ($links as $link)
         <li class="list-group-item d-flex justify-content-between align-items-center">
             
-            {{ $link->url }} 
-            
-            <a href="{{ route('link.contClick', $link->id) }}" class="float-left">
+            {{ $link->url }}   
+
+            <a href="{{ route('link.update' , ['id' => $link->id, 'click' => $link->clicks]) }}">                    
                 {{ $link->slug }} 
             </a>
 

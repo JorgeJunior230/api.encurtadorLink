@@ -31,7 +31,7 @@ class LinkController extends Controller
         //Valida o campo
         $request->validate([
             'url' =>['required'],
-            'slug' =>['min:6']
+            'slug' =>['max:8']
         ]);
 
 
@@ -40,9 +40,16 @@ class LinkController extends Controller
             $urlDesc = $request->input('url');
             $slugDesc = $request->input('slug');
 
+            //Verifica se o campo slug esta em branco, se estiver gera a url reduzida
+            if($slugDesc == '')
+            {
+                $hashids = new Hashids($urlDesc, 8);
+                $slugDesc = $hashids->encode(1);
+            }                         
+
             $link = new Link();
             $link->url = $urlDesc;
-            $link->slug = $slugDesc;
+            $link->slug = $slugDesc; 
 
             $link->save();
 
@@ -61,25 +68,31 @@ class LinkController extends Controller
         return to_route('link.index')->with('mensagem.sucesso', "O Link Reduzido para a UR '{$link->url}' foi removida com sucesso");
     }
 
-    public function edit(Link $link)
-    {
+    //public function edit(Request $request)
+    //{
+    //    return to_route('link.index');
+    //}
+
+    public function update(Request $request, $id, $click)
+    { 
+        $links = Link::findOrFail($id);        
+        $clicks = $click;
+
+        $link = new Link();
+
+        $clicks = $clicks + 1;
         
-    }
+        $link->clicks = $clicks;
+        $links->update(['clicks' => $link->clicks]);
 
-    public function update(Serie $series, SeriesFormRequest $request)
-    {
+        //$hashids = new Hashids();
+        //$hex = $hashids->decodeHex($id);
 
-    }
+        //dd($hex);
+        
+        
 
-    public function contClick(Link $link)
-    {
-
-        $link->clicks = $link->clicks + 1;
-        $link->save();
-
-        //return to_route('link.index');
-
-        return redirect($link->url);
+        return to_route('link.index');
     }
 
 

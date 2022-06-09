@@ -12,6 +12,7 @@ class Link extends Model
 
     public $fillable = [
         'url',
-        'slug'
+        'slug',
+        'clicks'
     ];
 }

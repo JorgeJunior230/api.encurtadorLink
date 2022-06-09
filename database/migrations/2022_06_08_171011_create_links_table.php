@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->string('url');
             $table->string('slug')->nullable();
-            $table->bigInteger('clicks');
+            $table->bigInteger('clicks')->default('0');
             $table->timestamps();
         });
     }

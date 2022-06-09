@@ -18,8 +18,7 @@ Route::get('/', function () {
     return redirect('/link');
 });
 
-//Route::get('/link', [LinkController::class, 'index'])->name('link.index');;
-//Route::get('/link/criar', [LinkController::class, 'create'])->name('link.create');
-Route::post('/link/contClick', [LinkController::class, 'contClick'])->name('link.contClick');
-
-Route::resource('/link', LinkController::class)->except(['show','edit','update']);
+Route::get('/link', [LinkController::class, 'index'])->name('link.index');;
+Route::get('/link/create', [LinkController::class, 'create'])->name('link.create');
+Route::get('/link/destroy', [LinkController::class, 'destroy'])->name('link.destroy');
+Route::get('/link/update/{id}/{click?}', [LinkController::class, 'update'])->name('link.update');
