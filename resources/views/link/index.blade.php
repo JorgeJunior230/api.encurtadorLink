@@ -13,7 +13,7 @@
             
             {{ $link->url }}   
 
-            <a href="{{ route('link.update' , ['id' => $link->id, 'click' => $link->clicks]) }}">                    
+            <a href="{{ route('link.update' , ['id' => $link->id, 'click' => $link->clicks]) }}" target="_blank">                    
                 {{ $link->slug }} 
             </a>
 

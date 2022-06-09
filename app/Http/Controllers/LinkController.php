@@ -83,16 +83,11 @@ class LinkController extends Controller
         $clicks = $clicks + 1;
         
         $link->clicks = $clicks;
-        $links->update(['clicks' => $link->clicks]);
+        $links->update(['clicks' => $link->clicks]);       
 
-        //$hashids = new Hashids();
-        //$hex = $hashids->decodeHex($id);
-
-        //dd($hex);
+        $URL = 'http://'.$links->url;        
         
-        
-
-        return to_route('link.index');
+        return redirect($URL);
     }
 
 
