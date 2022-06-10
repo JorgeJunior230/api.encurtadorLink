@@ -2,7 +2,6 @@
 
 namespace App\Exports;
 
-use App\Models\LinksExport;
 use App\Models\Link;
 use Maatwebsite\Excel\Concerns\FromCollection;
 use Illuminate\Support\Facades\DB;
@@ -14,6 +13,6 @@ class LinkExport implements FromCollection
     */
     public function collection()
     {
-        return Link::query()->orderBy('url')->get();;
+        return Link::query()->select('url', 'slug', 'clicks','created_at', 'updated_at')->orderBy('url')->get();
     }
 }
