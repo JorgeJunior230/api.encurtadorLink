@@ -26,6 +26,6 @@ Route::get('/link/edit/{id}', [LinkController::class, 'edit'])->name('link.edit'
 
 Route::post('/link/destroy/{id}', [LinkController::class, 'destroy'])->name('link.destroy');
 Route::post('/link/store', [LinkController::class, 'store'])->name('link.store');
-Route::post('/link/updateData//{id}', [LinkController::class, 'updateData'])->name('link.updateData');
+Route::post('/link/updateData/{id}', [LinkController::class, 'updateData'])->name('link.updateData');
 
 Route::get('/access/{id}', [AccessController::class, 'index'])->name('access.index');

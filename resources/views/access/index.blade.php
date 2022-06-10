@@ -1,4 +1,4 @@
-<x-layout title="Acessos no Link">
+<x-layout title="Acessos no Link {{ $link->url }} ">
     <ul class="list-group">
         <table id="datagrid" class="table table-striped table-bordered table-hover">
                 <thead class="thead-light">

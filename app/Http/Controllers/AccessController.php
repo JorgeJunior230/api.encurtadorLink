@@ -10,12 +10,10 @@ class AccessController extends Controller
 {
     public function index($id)
     {
-        $access = Access::query()
-        ->join('links', 'link_id', '=', 'links.id')
-        ->where('link_id', $id)
-        ->orderBy('accesses.id', 'desc')->get();
+        $access = Access::query()->where('link_id', $id)->orderBy('id', 'desc')->get();
+        $links = Link::findOrFail($id);  
 
-        return view('access.index')->with('accesses', $access);
+        return view('access.index')->with('accesses', $access)->with('link', $links);
 
     }
 
