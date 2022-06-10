@@ -20,4 +20,5 @@ class Link extends Model
     {
         return $this->hasMany(Access::class, 'link_id');
     }
+
 }

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Link;
+use App\Models\Access;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Hashids\Hashids;
@@ -66,32 +67,37 @@ class LinkController extends Controller
 
     }
 
-    public function edit(Link $link)
+    public function edit($id)
     {
         //dd($link);
-        return view('link.edit')->with('link', $link);
+        $links = Link::findOrFail($id);  
+
+        return view('link.edit')->with('link', $links);
     }
 
     public function update(Request $request, $id, $click)
     { 
-        $links = Link::findOrFail($id);        
-        $clicks = $click;
-
+        $links = Link::findOrFail($id);   
         $link = new Link();
+        $access = new Access();
 
+        $clicks = $click;
         $clicks = $clicks + 1;
-        
+
         $link->clicks = $clicks;
-        $links->update(['clicks' => $link->clicks]);       
+
+        //Atualiza a coluna clicks na tabela Links
+        $links->update(['clicks' => $link->clicks]);   
 
         $URL = 'http://'.$links->url;    
-        
-        //$USER_AGENT = $request->server('HTTP_USER_AGENT');
         $USER_AGENT = $request->header('user-agent');
         $IP = $request->ip();
 
+        $access->link_id = $links->id;
+        $access->ip = $IP;
+        $access->user_agent = $USER_AGENT;
 
-        dd($USER_AGENT);
+        $access->save();                    
         
         return redirect($URL);
     }
