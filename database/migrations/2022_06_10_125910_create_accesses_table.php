@@ -15,6 +15,9 @@ return new class extends Migration
     {
         Schema::create('accesses', function (Blueprint $table) {
             $table->id();
+            $table->string('ip');
+            $table->string('user_agent');
+            $table->foreignId('link_id')->constrained()->onDelete('cascade');
             $table->timestamps();
         });
     }

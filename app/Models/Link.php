@@ -18,6 +18,6 @@ class Link extends Model
 
     public function acessos()
     {
-        return $this->hasMany(Access::class);
+        return $this->hasMany(Access::class, 'link_id');
     }
 }
