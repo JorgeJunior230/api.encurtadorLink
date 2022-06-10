@@ -29,7 +29,7 @@ class LinkController extends Controller
         //**Testa para saber se esta recebendo os dados certos do form */
         //dd($request->all());
 
-        //Valida o campo
+        //Validas os campos
         $request->validate([
             'url' =>['required'],
             'slug' =>['max:8']
@@ -57,7 +57,7 @@ class LinkController extends Controller
             return $link;
         });
 
-        return to_route('link.index')->with('mensagem.sucesso', "O Link Reduzido para a URL '{$link->url}' foi adicionada com sucesso");
+        return to_route('link.index')->with('mensagem.sucesso', "O Link Reduzido para a URL '{$link->url}' foi adicionado com sucesso");
     }
 
     public function destroy(Request $request)
@@ -89,7 +89,8 @@ class LinkController extends Controller
         //Atualiza a coluna clicks na tabela Links
         $links->update(['clicks' => $link->clicks]);   
 
-        $URL = 'http://'.$links->url;    
+        //$URL = 'http://'.$links->url;  
+        $URL = $links->url;     
         $USER_AGENT = $request->header('user-agent');
         $IP = $request->ip();
 
@@ -102,15 +103,35 @@ class LinkController extends Controller
         return redirect($URL);
     }
 
-    public function updateData(Request $request)
+    public function updateData(Request $request, $id)
     { 
-        //Valida o campo
+        //Valida os campos
         $request->validate([
             'url' =>['required'],
             'slug' =>['max:8']
         ]);
 
-        return to_route('link.index');
+        $links = Link::findOrFail($id);  
+
+        $urlDesc = $request->input('url');
+        $slugDesc = $request->input('slug');
+
+        
+        //Verifica se o campo slug esta em branco, se estiver gera a url reduzida
+        if($slugDesc == '')
+        {
+            $hashids = new Hashids($urlDesc, 8);
+            $slugDesc = $hashids->encode(1);
+        }   
+
+        //Atualiza a coluna clicks na tabela Links
+        $links->update([
+            'url' => $urlDesc,
+            'slug' => $slugDesc,
+        ]);   
+
+
+        return to_route('link.index')->with('mensagem.sucesso', "O Link Reduzido para a URL '{$links->url}' foi editado com sucesso");
     }
 
 

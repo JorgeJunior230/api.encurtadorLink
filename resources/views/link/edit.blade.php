@@ -1,7 +1,6 @@
 <x-layout title="Editar Link '{{ $link->url }}'">
-    <form action="{{ route('link.updateData') }}" method="post">
-        @csrf
-        @method('PUT')
+    <form action="{{ route('link.updateData' , $link->id) }}" method="post">
+        @csrf       
         <div class="row mb-3">
             <div class="col-4">
                 <label for="url" class="form-label">Link:</label>

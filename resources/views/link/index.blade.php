@@ -8,29 +8,47 @@
     @endisset
 
     <ul class="list-group">
-        @foreach ($links as $link)
-        <li class="list-group-item d-flex justify-content-between align-items-center">
-            
-            {{ $link->url }}   
+        <table id="datagrid" class="table table-striped table-bordered table-hover">
+            <thead class="thead-light">
+                <tr>
+                    <th scope="col">URL</th>
+                    <th scope="col">Link Reduzido</th>
+                    <th scope="col">Total Acessos</th>
+                    <th scope="col">Ação</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach ($links as $link)
+                <tr>
+                    <td scope="row">{{ $link->url }}  </td>
+                    <td>                    
+                        <a href="{{ route('link.update' , ['id' => $link->id, 'click' => $link->clicks]) }}" target="_blank">                    
+                            {{ $link->slug }} 
+                        </a>
+                    </td>
+                    <td> {{ $link->clicks }}  </td>
+                    <td >
+                        <span class="d-flex">
+                            <a href="{{ route('link.edit', $link->id) }}" class="btn btn-primary btn-sm">
+                                Edit
+                            </a>
 
-            <a href="{{ route('link.update' , ['id' => $link->id, 'click' => $link->clicks]) }}" target="_blank">                    
-                {{ $link->slug }} 
-            </a>
+                            <a href="{{ route('link.access', $link->id) }}" class="btn btn-success btn-sm ms-2">
+                                Access
+                            </a>
 
-            <span class="d-flex">
+                            <form action="{{ route('link.destroy', $link->id) }}" method="post" class="ms-2">
+                                @csrf
+                                <button class="btn btn-danger btn-sm">
+                                    Del
+                                </button>
+                            </form>
+                        </span>
+                    </td>
 
-                <a href="{{ route('link.edit', $link->id) }}" class="btn btn-primary btn-sm">
-                    E
-                </a>
-
-                <form action="{{ route('link.destroy', $link->id) }}" method="post" class="ms-2">
-                    @csrf
-                    <button class="btn btn-danger btn-sm">
-                        X
-                    </button>
-                </form>
-            </span>
-        </li>
-        @endforeach
+                </tr>
+                @endforeach
+            </tbody>
+        </table>
     </ul>
 </x-layout>
