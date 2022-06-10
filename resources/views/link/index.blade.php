@@ -1,5 +1,7 @@
 <x-layout title="Lista de Links">
     <a href="{{ route('link.create') }}" class="btn btn-dark mb-2">Adicionar</a>
+    <a href="{{ route('link.create') }}" class="btn btn-secondary mb-2">Importar CSV</a>
+    <a href="{{ route('link.create') }}" class="btn btn-warning mb-2">Exportar CSV</a>
 
     @isset($mensagemSucesso)
     <div class="alert alert-success">
@@ -33,7 +35,7 @@
                                 Edit
                             </a>
 
-                            <a href="{{ route('link.access', $link->id) }}" class="btn btn-success btn-sm ms-2">
+                            <a href="{{ route('access.index', $link->id) }}" class="btn btn-success btn-sm ms-2">
                                 Access
                             </a>
 

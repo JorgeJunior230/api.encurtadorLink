@@ -15,7 +15,6 @@ class LinkController extends Controller
         $links = Link::query()->orderBy('url')->get();
         $mensagemSucesso = session('mensagem.sucesso');
 
-        //return view('link.index')->with('links', $links);
         return view('link.index')->with('links', $links)->with('mensagemSucesso', $mensagemSucesso);
     }
 
