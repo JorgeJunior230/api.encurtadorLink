@@ -15,4 +15,9 @@ class Link extends Model
         'slug',
         'clicks'
     ];
+
+    public function acessos()
+    {
+        return $this->hasMany(Access::class);
+    }
 }

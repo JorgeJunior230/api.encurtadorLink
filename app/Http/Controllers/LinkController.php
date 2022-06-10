@@ -84,7 +84,14 @@ class LinkController extends Controller
         $link->clicks = $clicks;
         $links->update(['clicks' => $link->clicks]);       
 
-        $URL = 'http://'.$links->url;        
+        $URL = 'http://'.$links->url;    
+        
+        //$USER_AGENT = $request->server('HTTP_USER_AGENT');
+        $USER_AGENT = $request->header('user-agent');
+        $IP = $request->ip();
+
+
+        dd($USER_AGENT);
         
         return redirect($URL);
     }
