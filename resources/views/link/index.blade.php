@@ -8,7 +8,7 @@
 </script>
 
     <a href="{{ route('link.create') }}" class="btn btn-dark mb-2">Adicionar Link</a>
-    <a href="{{ route('link.import') }}" class="btn btn-secondary mb-2">Importar CSV</a>
+    <a href="{{ route('link.import') }}" class="btn btn-success mb-2">Importar CSV</a>
     <a href="{{ route('link.exportCsv') }}" class="btn btn-warning mb-2" onclick="exportTasks(event.target);">Exportar CSV</a>
 
     @isset($mensagemSucesso)

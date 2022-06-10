@@ -23,5 +23,6 @@
         </div>
 
         <button type="submit" class="btn btn-primary">Adicionar</button>
+        <a href="{{ route('link.index') }}" class="btn btn-warning">Voltar</a>
     </form>
 </x-layout>

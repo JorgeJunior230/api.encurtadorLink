@@ -1,4 +1,5 @@
 <x-layout title="Acessos no Link {{ $link->url }} ">
+<a href="{{ route('link.index') }}" class="btn btn-warning mb-2">Voltar</a>
     <ul class="list-group">
         <table id="datagrid" class="table table-striped table-bordered table-hover">
                 <thead class="thead-light">
