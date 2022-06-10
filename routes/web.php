@@ -23,6 +23,8 @@ Route::get('/link', [LinkController::class, 'index'])->name('link.index');;
 Route::get('/link/create', [LinkController::class, 'create'])->name('link.create');
 Route::get('/link/update/{id}/{click?}', [LinkController::class, 'update'])->name('link.update');
 Route::get('/link/edit/{id}', [LinkController::class, 'edit'])->name('link.edit');
+Route::get('/link/exportCsv', [LinkController::class, 'exportCsv'])->name('link.exportCsv');
+Route::get('/link/import', [LinkController::class, 'import'])->name('link.import');
 
 Route::post('/link/destroy/{id}', [LinkController::class, 'destroy'])->name('link.destroy');
 Route::post('/link/store', [LinkController::class, 'store'])->name('link.store');

@@ -1,6 +1,15 @@
 <x-layout title="Lista de Links">
-    <a href="{{ route('link.create') }}" class="btn btn-dark mb-2">Adicionar Link</a>
 
+<script>
+   function exportTasks(_this) {
+      let _url = $(_this).data('href');
+      window.location.href = _url;
+   }
+</script>
+
+    <a href="{{ route('link.create') }}" class="btn btn-dark mb-2">Adicionar Link</a>
+    <a href="{{ route('link.import') }}" class="btn btn-secondary mb-2">Importar CSV</a>
+    <a href="{{ route('link.exportCsv') }}" class="btn btn-warning mb-2" onclick="exportTasks(event.target);">Exportar CSV</a>
 
     @isset($mensagemSucesso)
     <div class="alert alert-success">

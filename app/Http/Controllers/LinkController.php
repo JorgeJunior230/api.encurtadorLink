@@ -7,6 +7,8 @@ use App\Models\Access;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Hashids\Hashids;
+use Maatwebsite\Excel\Facades\Excel;
+use App\Exports\LinkExport;
 
 class LinkController extends Controller
 {
@@ -131,6 +133,16 @@ class LinkController extends Controller
 
 
         return to_route('link.index')->with('mensagem.sucesso', "O Link Reduzido para a URL '{$links->url}' foi editado com sucesso");
+    }
+
+    public function exportCsv()
+    {   
+        return Excel::download(new LinkExport, 'links.csv', \Maatwebsite\Excel\Excel::CSV);
+    }
+
+    public function import()
+    {   
+        return view('link.import');
     }
 
 
