@@ -1,7 +1,6 @@
 <x-layout title="Lista de Links">
-    <a href="{{ route('link.create') }}" class="btn btn-dark mb-2">Adicionar</a>
-    <a href="{{ route('link.create') }}" class="btn btn-secondary mb-2">Importar CSV</a>
-    <a href="{{ route('link.create') }}" class="btn btn-warning mb-2">Exportar CSV</a>
+    <a href="{{ route('link.create') }}" class="btn btn-dark mb-2">Adicionar Link</a>
+
 
     @isset($mensagemSucesso)
     <div class="alert alert-success">
