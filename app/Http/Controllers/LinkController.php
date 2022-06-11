@@ -156,9 +156,8 @@ class LinkController extends Controller
 
         Excel::import(new LinkImport, $request->file('csv_file'), null, \Maatwebsite\Excel\Excel::CSV);
 
-        
         $links = Link::query()->orderBy('url')->get();
-        return view('link.index')->with('links', $links)->with('mensagemSucesso', $mensagemSucesso);              
+        return view('link.index')->with('links', $links)->with('mensagemSucesso', "Arquivo Importado com sucesso!");              
 
     }
 
