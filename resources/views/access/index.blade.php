@@ -14,7 +14,7 @@
                         <tr>
                             <td scope="row">{{ $access->ip }}  </td>
                             <td scope="row">{{ $access->user_agent }}  </td>
-                            <td scope="row">{{ $access->created_at }}  </td>
+                            <td scope="row">{{ \Carbon\Carbon::parse($access->created_at)->format('d/m/Y h:i:s A') }}  </td>
                         </tr>
                     @endforeach
                 </tbody>

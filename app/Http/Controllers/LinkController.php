@@ -91,9 +91,7 @@ class LinkController extends Controller
 
         //Atualiza a coluna clicks na tabela Links
         $links->update(['clicks' => $link->clicks]);   
-
-        //$URL = 'http://'.$links->url;  
-        $URL = $links->url;     
+   
         $USER_AGENT = $request->header('user-agent');
         $IP = $request->ip();
 
@@ -101,9 +99,10 @@ class LinkController extends Controller
         $access->ip = $IP;
         $access->user_agent = $USER_AGENT;
 
-        $access->save();                    
-        
-        return redirect($URL);
+        $access->save();
+
+        return to_route('link.index');   
+
     }
 
     public function updateData(Request $request, $id)
@@ -157,7 +156,7 @@ class LinkController extends Controller
         Excel::import(new LinkImport, $request->file('csv_file'), null, \Maatwebsite\Excel\Excel::CSV);
 
         $links = Link::query()->orderBy('url')->get();
-        return view('link.index')->with('links', $links)->with('mensagemSucesso', "Arquivo Importado com sucesso!");              
+        return to_route('link.index')->with('links', $links)->with('mensagemSucesso', "Arquivo Importado com sucesso!");              
 
     }
 

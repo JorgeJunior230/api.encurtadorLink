@@ -1,11 +1,11 @@
 <x-layout title="Lista de Links">
 
-<script>
-   function exportTasks(_this) {
-      let _url = $(_this).data('href');
-      window.location.href = _url;
-   }
+<script type="text/javascript">
+    function redirectPage(url) {
+        window.open(url, '_blank');
+    }
 </script>
+
 
     <a href="{{ route('link.create') }}" class="btn btn-dark mb-2">Adicionar Link</a>
     <a href="{{ route('link.import') }}" class="btn btn-success mb-2">Importar CSV</a>
@@ -32,7 +32,7 @@
                 <tr>
                     <td scope="row">{{ $link->url }}  </td>
                     <td>                    
-                        <a href="{{ route('link.update' , ['id' => $link->id, 'click' => $link->clicks]) }}" target="_blank">                    
+                        <a href="{{ route('link.update' , ['id' => $link->id, 'click' => $link->clicks]) }}" onclick="redirectPage('{{ $link->url }}');">                    
                             {{ $link->slug }} 
                         </a>
                     </td>

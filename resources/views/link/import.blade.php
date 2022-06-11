@@ -1,7 +1,7 @@
 <x-layout title="Importar Links">
     <form action="{{ route('link.importSave') }}" method="post" enctype="multipart/form-data">
         @csrf
-        <div class="form-group mb-4" style="max-width: 500px; margin: 0 auto;">
+        <div class="form-group mb-4">
                 <div class="custom-file text-left">
                     <input type="file" name="csv_file" class="custom-file-input" id="csv_file">
                 </div>
