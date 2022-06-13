@@ -2,6 +2,15 @@
 
 <script type="text/javascript">
     function redirectPage(url) {
+
+        var string = url;
+
+        string = string.substring(0,5);
+
+        if(string != 'https'){
+           url = 'https://' + url;
+        }
+
         window.open(url, '_blank');
     }
 </script>
