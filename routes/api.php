@@ -2,6 +2,7 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+//use App\Http\Controllers\Api\LinkController;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,3 +18,9 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+Route::get('/link',[\App\Http\Controllers\Api\LinkController::class,'index']);
+Route::get('/link/{id}',[\App\Http\Controllers\Api\LinkController::class,'show']);
+Route::post('/link',[\App\Http\Controllers\Api\LinkController::class,'store']);
+Route::delete('/link/{id}',[\App\Http\Controllers\Api\LinkController::class,'destroy']);
+Route::put('/link/{id}',[\App\Http\Controllers\Api\LinkController::class,'updateData']);
