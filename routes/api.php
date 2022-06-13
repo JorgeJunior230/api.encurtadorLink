@@ -24,3 +24,6 @@ Route::get('/link/{id}',[\App\Http\Controllers\Api\LinkController::class,'show']
 Route::post('/link',[\App\Http\Controllers\Api\LinkController::class,'store']);
 Route::delete('/link/{id}',[\App\Http\Controllers\Api\LinkController::class,'destroy']);
 Route::put('/link/{id}',[\App\Http\Controllers\Api\LinkController::class,'updateData']);
+Route::patch('/link/{id}',[\App\Http\Controllers\Api\LinkController::class,'update']);
+Route::get('/link-export',[\App\Http\Controllers\Api\LinkController::class,'exportCsv']);
+Route::post('/link-import',[\App\Http\Controllers\Api\LinkController::class,'importSave']);

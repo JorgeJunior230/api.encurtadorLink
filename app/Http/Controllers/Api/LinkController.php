@@ -67,16 +67,17 @@ class LinkController extends Controller
         return $links;
     }
 
-    public function update(Request $request, $id, $click)
+    public function update(Request $request, $id)
     { 
+        
         $links = Link::findOrFail($id);   
         $link = new Link();
         $access = new Access();
 
-        $clicks = $click;
+        $clicks = $links->clicks;
         $clicks = $clicks + 1;
 
-        $link->clicks = $clicks;
+        $link->clicks = $clicks;        
 
         //Atualiza a coluna clicks na tabela Links
         $links->update(['clicks' => $link->clicks]);   
@@ -88,9 +89,9 @@ class LinkController extends Controller
         $access->ip = $IP;
         $access->user_agent = $USER_AGENT;
 
-        $access->save();
+        $retorno = $access->save();
 
-        return to_route('link.index');   
+        return response()->json($retorno, 201);
 
     }
 
@@ -124,9 +125,12 @@ class LinkController extends Controller
         return response()->json($retorno, 201);
     }
 
-    public function exportCsv()
-    {   
+    public function exportCsv(Request $request)
+    { 
         return Excel::download(new LinkExport, 'links.csv');
+
+        return response()->json(['message' => 'Arquivo CSV exportado'], 201); 
+
     }
 
     public function importSave(Request $request)
@@ -138,8 +142,7 @@ class LinkController extends Controller
 
         Excel::import(new LinkImport, $request->file('csv_file'), null, \Maatwebsite\Excel\Excel::CSV);
 
-        $links = Link::query()->orderBy('url')->get();
-        return to_route('link.index')->with('links', $links)->with('mensagemSucesso', "Arquivo Importado com sucesso!");              
+        return response()->json(['message' => 'Arquivo CSV importado'], 201);          
 
     }
 
